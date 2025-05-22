@@ -218,7 +218,6 @@ PASS  tests/integration/projects.test.ts
 
 Test Suites: 1 passed, 1 total
 Tests:       3 passed, 3 total
-
 ```
 
 
