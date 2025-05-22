@@ -204,7 +204,7 @@ GET /health
 ```
 
 ### 🧪 Testes
-```json
+```bash
 
 // 📤 Request
 npm test
