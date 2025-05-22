@@ -205,17 +205,20 @@ GET /health
 
 ### 🧪 Testes
 ```json
+
 // 📤 Request
 npm test
 
 // 📥 Output Esperado
 PASS  tests/integration/projects.test.ts
+
 ✓ POST /projects (201 ms)
 ✓ GET /projects (45 ms)
 ✓ DELETE /projects/:id (78 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       3 passed, 3 total
+
 ```
 
 
