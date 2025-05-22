@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ES2021", // Alvo do JavaScript gerado
+    "module": "commonjs", // Sistema de módulos
+    "lib": ["ES2021"], // Bibliotecas padrão do JS
+    "rootDir": "./src", // Diretório raiz dos arquivos TypeScript
+    "outDir": "./dist", // Diretório de saída para os arquivos JavaScript compilados
+    "esModuleInterop": true, // Permite interoperabilidade com módulos CommonJS
+    "forceConsistentCasingInFileNames": true, // Garante consistência no case dos nomes de arquivos
+    "strict": true, // Habilita todas as verificações estritas de tipo
+    "skipLibCheck": true, // Pula a verificação de tipos de arquivos de declaração (.d.ts)
+    "resolveJsonModule": true, // Permite importar arquivos .json como módulos
+    "experimentalDecorators": true, // Habilita decoradores experimentais (se usar com TypeORM, por exemplo)
+    "emitDecoratorMetadata": true, // Emite metadados para decoradores (usado com reflection)
+    "moduleResolution": "node", // Como o compilador resolve módulos
+    "sourceMap": true, // Gera source maps para debugging
+    "baseUrl": ".", // Diretório base para resolução de caminhos não relativos
+    "paths": { // Mapeamento de caminhos para importações mais limpas
+      "@/*": ["src/*"]
+    }
+  },
+  "include": [
+    "src/**/*" // Inclui todos os arquivos .ts e .tsx no diretório src
+  ],
+  "exclude": [
+    "node_modules", // Exclui o diretório node_modules
+    "**/*.spec.ts", // Exclui arquivos de teste (se usar .spec.ts)
+    "**/*.test.ts"  // Exclui arquivos de teste (se usar .test.ts)
+  ]
+}

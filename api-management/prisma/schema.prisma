@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          String   @id @default(cuid()) // Identificador único do projeto
+  name        String   // Nome do projeto
+  description String?  // Descrição opcional do projeto
+  createdAt   DateTime @default(now()) // Data de criação
+  updatedAt   DateTime @updatedAt // Data da última atualização
+
+  tasks Task[] // Um projeto pode ter várias tarefas
+
+  @@map("projects") // Mapeia para a tabela "projects" no banco
+}
+
+model Task {
+  id          String   @id @default(cuid()) // Identificador único da tarefa
+  title       String   // Título da tarefa
+  description String?  // Descrição opcional da tarefa
+  status      String   @default("PENDING") // Status da tarefa (ex: PENDING, IN_PROGRESS, COMPLETED)
+  dueDate     DateTime? // Data de vencimento opcional
+  createdAt   DateTime @default(now()) // Data de criação
+  updatedAt   DateTime @updatedAt // Data da última atualização
+
+  projectId String   // Chave estrangeira para o projeto
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade) // Relacionamento com o projeto
+
+  @@map("tasks") // Mapeia para a tabela "tasks" no banco
+}
