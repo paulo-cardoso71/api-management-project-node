@@ -83,3 +83,142 @@ POST /projects
   "createdAt": "2024-03-10T15:30:00.000Z",
   "tasks": []
 }
+
+// 📥 Response (200 OK)
+[
+  {
+    "id": "clxq1z2000008qg8e5d9c2a3",
+    "name": "API Development",
+    "description": "Desenvolvimento da API principal",
+    "createdAt": "2024-03-10T15:30:00.000Z",
+    "tasks": [
+      {
+        "id": "cly12a3b000009qh1f6e7d8e9",
+        "title": "Implementar autenticação",
+        "status": "IN_PROGRESS"
+      }
+    ]
+  }
+]
+
+// 📤 Request
+{
+  "title": "Configurar CI/CD",
+  "description": "Implementar GitHub Actions",
+  "status": "PENDING",
+  "dueDate": "2024-03-20"
+}
+
+// 📥 Response (201 Created)
+{
+  "id": "cly14c5d00000aqi2g7f8h9i0",
+  "title": "Configurar CI/CD",
+  "description": "Implementar GitHub Actions",
+  "status": "PENDING",
+  "dueDate": "2024-03-20T00:00:00.000Z",
+  "createdAt": "2024-03-10T16:30:00.000Z",
+  "projectId": "clxq1z2000008qg8e5d9c2a3"
+}
+
+// 📥 Response (200 OK)
+{
+  "id": "cly14c5d00000aqi2g7f8h9i0",
+  "title": "Configurar CI/CD",
+  "description": "Implementar GitHub Actions",
+  "status": "PENDING",
+  "dueDate": "2024-03-20T00:00:00.000Z",
+  "createdAt": "2024-03-10T16:30:00.000Z",
+  "updatedAt": "2024-03-10T16:35:00.000Z"
+}
+```
+
+### ✅ Tarefas
+#### **Criar Tarefa** `POST /projects/:id/tasks`
+```json
+// 📤 Request
+{
+    "title": "Configurar CI/CD",
+    "description": "Implementar Github Actions",
+    "status": "PENDING",
+    "dueDate": "2024-03-20"
+}
+```
+
+#### **Listar Tarefas** `GET /projects/:id/tasks`
+```json
+// 📥 Response (200 OK)
+[
+  {
+    "id": "cly12a3b000009qh1f6e7d8e9",
+    "title": "Implementar autenticação",
+    "status": "IN_PROGRESS",
+    "dueDate": "2024-03-15T00:00:00.000Z",
+    "createdAt": "2024-03-10T16:00:00.000Z"
+  },
+  {
+    "id": "cly14c5d00000aqi2g7f8h9i0",
+    "title": "Configurar CI/CD",
+    "status": "PENDING",
+    "dueDate": "2024-03-20T00:00:00.000Z",
+    "createdAt": "2024-03-10T16:30:00.000Z"
+  }
+]
+```
+
+#### **Atualizar Tarefa** `PUT /projects/:id/tasks/:taskId`
+```json
+// 📤 Request
+{
+  "status": "COMPLETED",
+  "dueDate": "2024-03-25"
+}
+
+// 📥 Response (200 OK)
+{
+  "id": "cly14c5d00000aqi2g7f8h9i0",
+  "title": "Configurar CI/CD",
+  "status": "COMPLETED",
+  "dueDate": "2024-03-25T00:00:00.000Z",
+  "updatedAt": "2024-03-10T17:00:00.000Z"
+}
+```
+
+#### **Deletar Tarefa** `DELETE /projects/:id/tasks/:taskId`
+```json
+// 📥 Response (204 No Content)
+```
+
+### 🩺 Health Check
+```json
+
+// 📤 Request
+GET /health
+
+// 📥 Response (200 OK)
+{
+  "status": "OK",
+  "timestamp": "2024-03-10T16:45:00.000Z",
+  "version": "1.0.0",
+  "database": "CONNECTED"
+}
+```
+
+### 🧪 Testes
+```json
+// 📤 Request
+npm test
+
+// 📥 Output Esperado
+PASS  tests/integration/projects.test.ts
+✓ POST /projects (201 ms)
+✓ GET /projects (45 ms)
+✓ DELETE /projects/:id (78 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+```
+
+
+
+
+
