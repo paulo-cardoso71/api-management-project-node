@@ -1,55 +1,85 @@
-🚀 API de Gerenciamento de Projetos e Tarefas
-Esta é uma API RESTful desenvolvida com Node.js, TypeScript, Express.js e Prisma (com PostgreSQL) para gerenciar projetos e suas respectivas tarefas. O projeto visa demonstrar boas práticas de desenvolvimento backend, incluindo estrutura organizada, validação de dados, tratamento de erros e uma base para futuras expansões como autenticação e testes mais robustos.
+# 🚀 API de Gerenciamento de Projetos e Tarefas
 
-✨ Funcionalidades Principais
-progetti Gerenciamento de Projetos:
-Criar novos projetos com nome e descrição.
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18-brightgreen)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/lang-typescript-blue)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Listar todos os projetos existentes.
+Uma API RESTful robusta para gerenciamento de projetos e tarefas, construída com modernas tecnologias Node.js.
 
-Buscar um projeto específico pelo seu ID.
+## 🌟 Recursos Principais
 
-Atualizar os dados de um projeto existente.
+- **CRUD Completo** para Projetos e Tarefas
+- **Validação de Dados** rigorosa com Zod
+- **Tratamento de Erros** centralizado
+- **Ordenação Automática** de resultados
+- **Deleção em Cascata** de projetos/tarefas
+- **Health Check** endpoint
+- Pronto para produção com **Helmet & CORS**
 
-Deletar um projeto (e todas as suas tarefas associadas em cascata).
+## 🛠 Tecnologias
 
-✔️ Gerenciamento de Tarefas:
-Criar novas tarefas associadas a um projeto específico, com título, descrição, status e data de vencimento opcional.
+| Backend         | Banco de Dados   | Ferramentas       |
+|-----------------|------------------|-------------------|
+| Node.js 18+     | PostgreSQL       | Prisma ORM        |
+| TypeScript      |                  | Zod               |
+| Express.js      |                  | ts-node-dev       |
+| REST API        |                  | Dotenv            |
 
-Listar todas as tarefas pertencentes a um projeto.
 
-Buscar uma tarefa específica pelo seu ID (dentro do escopo de um projeto).
+## 🚀 Começando
 
-Atualizar os dados de uma tarefa existente.
+### Pré-requisitos
+- Node.js 18+
+- PostgreSQL instalado
+- npm ou yarn
 
-Deletar uma tarefa.
+### Instalação
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/api-gerenciamento.git
+   cd api-gerenciamento
 
-🛡️ Outras Funcionalidades:
-Validação de Dados: Utilização de Zod para validar os dados de entrada nas requisições.
+2. Instale as dependências:
+    ```bash
+    npm install
 
-Tratamento de Erros: Middleware centralizado para tratamento de erros.
+3. Configure o ambiente:
+    ```bash
+    cp .env.example .env # Edite o .env com suas credenciais
 
-Health Check: Endpoint /health para verificar a saúde da API.
+4. Execute as migrações:
+    ```bash
+    npx prisma migrate dev
 
-🛠️ Tecnologias Utilizadas
-Backend: Node.js (v18+ recomendado)
+5. Inicie o servidor:
+    ```bash
+    npm run dev
 
-Linguagem: TypeScript
+## 📡 Endpoints
 
-Framework Web: Express.js
+### 🗂 Projetos
 
-ORM: Prisma
+| Método | Endpoint           | Descrição                          |
+|--------|--------------------|------------------------------------|
+| POST   | `/projects`        | Cria novo projeto                  |
+| GET    | `/projects`        | Lista todos projetos com tarefas   |
+| GET    | `/projects/:id`    | Busca projeto por ID com tarefas   |
+| PUT    | `/projects/:id`    | Atualiza dados do projeto          |
+| DELETE | `/projects/:id`    | Remove projeto e tarefas associadas|
 
-Banco de Dados: PostgreSQL
+**Exemplo de Request:**
+```json
+POST /projects
+{
+  "name": "API Development",
+  "description": "Desenvolvimento da API principal"
+}
 
-Validação de Dados: Zod
-
-Segurança Básica: Helmet, CORS
-
-Tratamento de Erros Assíncronos: express-async-errors
-
-Códigos de Status HTTP: http-status-codes
-
-Variáveis de Ambiente: dotenv
-
-Desenvolvimento: ts-node-dev para hot-reloading
+// 📥 Response (201 Created)
+{
+  "id": "clxq1z2000008qg8e5d9c2a3",
+  "name": "API Development",
+  "description": "Desenvolvimento da API principal",
+  "createdAt": "2024-03-10T15:30:00.000Z",
+  "tasks": []
+}
